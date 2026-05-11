@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StratArena | Proof-of-Skill Platform</title>
+  <meta name="description" content="StratArena turns business practice into verified proof of ability." />
+  <style>
+    :root {
+      --navy: #071426;
+      --navy2: #10294a;
+      --orange: #F5A623;
+      --teal: #34BDBD;
+      --bg: #f7f9fc;
+      --text: #071426;
+      --muted: #64748b;
+      --line: #e5e7eb;
+      --shadow: 0 20px 60px rgba(7,20,38,.08);
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background: white;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea, select { font: inherit; }
+    section { scroll-margin-top: 90px; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      max-width: 1180px;
+      margin: auto;
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+    }
+
+    .logo-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 16px;
+      background: var(--navy);
+      color: var(--orange);
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+    }
+
+    .logo small {
+      display: block;
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 11px;
+      margin-top: -3px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 800;
+      color: #526174;
+    }
+
+    .nav-links a:hover { color: var(--navy); }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 13px 20px;
+      font-weight: 900;
+      font-size: 14px;
+      transition: .2s ease;
+      box-shadow: 0 8px 24px rgba(7,20,38,.08);
+    }
+
+    .btn.primary {
+      background: var(--orange);
+      color: var(--navy);
+    }
+
+    .btn.primary:hover { background: #ffc85f; transform: translateY(-1px); }
+
+    .btn.dark {
+      background: var(--navy);
+      color: white;
+    }
+
+    .btn.light {
+      background: white;
+      color: var(--navy);
+      border: 1px solid var(--line);
+    }
+
+    .hero {
+      background: linear-gradient(180deg, #fff 0%, #f7f9fc 100%);
+      padding: 92px 22px;
+      overflow: hidden;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: auto;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 52px;
+      align-items: center;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      border: 1px solid var(--line);
+      background: white;
+      padding: 9px 14px;
+      border-radius: 999px;
+      color: #475569;
+      font-weight: 850;
+      font-size: 14px;
+      box-shadow: 0 8px 24px rgba(7,20,38,.05);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--teal);
+      border-radius: 999px;
+    }
+
+    h1 {
+      font-size: clamp(44px, 6vw, 76px);
+      line-height: .98;
+      letter-spacing: -2.7px;
+      margin: 24px 0;
+    }
+
+    h2 {
+      font-size: clamp(32px, 4vw, 54px);
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      margin: 0;
+    }
+
+    h3 { margin: 0; font-size: 21px; line-height: 1.2; }
+    p { margin: 0; }
+    .lead { color: var(--muted); font-size: 20px; max-width: 690px; }
+    .strong-line { margin-top: 18px; font-size: 18px; font-weight: 900; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+    .trust { margin-top: 22px; color: var(--muted); font-weight: 800; font-size: 14px; }
+
+    .mockup {
+      position: relative;
+    }
+
+    .glow1, .glow2 {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(30px);
+      z-index: 0;
+    }
+
+    .glow1 { width: 150px; height: 150px; background: rgba(52,189,189,.22); left: -25px; top: 15px; }
+    .glow2 { width: 180px; height: 180px; background: rgba(245,166,35,.23); right: -25px; bottom: 20px; }
+
+    .card {
+      background: white;
+      border: 1px solid #eef2f7;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 25px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mock-inner {
+      background: linear-gradient(135deg, var(--navy), var(--navy2));
+      color: white;
+      border-radius: 24px;
+      padding: 24px;
+    }
+
+    .mock-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      align-items: start;
+      margin-bottom: 20px;
+    }
+
+    .label {
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      font-size: 12px;
+      font-weight: 950;
+    }
+
+    .timer {
+      background: rgba(255,255,255,.11);
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .mock-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .mini-dark, .mini-light {
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .mini-dark { background: rgba(255,255,255,.11); }
+    .mini-light { background: white; color: var(--navy); }
+
+    .lines span {
+      display: block;
+      height: 8px;
+      background: rgba(255,255,255,.25);
+      border-radius: 999px;
+      margin-top: 9px;
+    }
+
+    .mock-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .stat {
+      background: #f8fafc;
+      border-radius: 18px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .stat small { color: var(--muted); font-weight: 900; }
+    .stat b { display: block; font-size: 23px; }
+
+    .section {
+      padding: 82px 22px;
+      background: white;
+    }
+
+    .section.alt { background: var(--bg); }
+    .section.dark { background: var(--navy); color: white; }
+
+    .section-head {
+      max-width: 780px;
+      margin-bottom: 42px;
+    }
+
+    .eyebrow {
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: .22em;
+      font-size: 13px;
+      font-weight: 950;
+      margin-bottom: 12px;
+    }
+
+    .section-head p {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .dark .section-head p { color: #cbd5e1; }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      margin-bottom: 16px;
+      font-size: 24px;
+    }
+
+    .orange-bg { background: rgba(245,166,35,.16); color: var(--orange); }
+    .teal-bg { background: rgba(52,189,189,.16); color: var(--teal); }
+
+    .dark-card {
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .dark-card p { color: #cbd5e1; margin-top: 12px; }
+
+    .step-number {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--orange);
+      color: var(--navy);
+      font-weight: 950;
+      margin-bottom: 15px;
+    }
+
+    .demo-box {
+      display: grid;
+      grid-template-columns: 1fr .78fr;
+      gap: 28px;
+    }
+
+    .challenge-text {
+      background: #f8fafc;
+      border-radius: 24px;
+      padding: 22px;
+      color: #475569;
+      margin-top: 18px;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    textarea, input, select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 15px;
+      outline: none;
+      background: white;
+    }
+
+    textarea { min-height: 105px; resize: vertical; }
+    textarea:focus, input:focus, select:focus { border-color: var(--teal); box-shadow: 0 0 0 4px rgba(52,189,189,.15); }
+
+    .score-card {
+      background: var(--navy);
+      color: white;
+      border-radius: 24px;
+      padding: 26px;
+      margin-top: 20px;
+    }
+
+    .score-card .score {
+      font-size: 62px;
+      font-weight: 950;
+      line-height: 1;
+    }
+
+    .badge {
+      display: inline-flex;
+      margin-top: 18px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--orange);
+      color: var(--navy);
+      font-weight: 950;
+      font-size: 14px;
+    }
+
+    .progress {
+      height: 12px;
+      background: rgba(255,255,255,.1);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 16px;
+    }
+
+    .bar {
+      height: 100%;
+      background: var(--teal);
+      border-radius: 999px;
+    }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 18px; }
+    .tag {
+      background: rgba(52,189,189,.15);
+      border-radius: 999px;
+      padding: 7px 13px;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .dashboard {
+      background: white;
+      color: var(--navy);
+      border-radius: var(--radius);
+      padding: 25px;
+      box-shadow: 0 25px 70px rgba(0,0,0,.2);
+    }
+
+    .dashboard-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .metric {
+      background: var(--navy);
+      color: white;
+      padding: 18px;
+      border-radius: 18px;
+      text-align: center;
+      font-weight: 950;
+    }
+
+    .metric.alt { background: #f8fafc; color: var(--navy); }
+
+    .big-value {
+      color: var(--orange);
+      font-size: 42px;
+      font-weight: 950;
+      line-height: 1;
+      margin-top: 8px;
+    }
+
+    .timeline-card {
+      border-left: 4px solid var(--orange);
+    }
+
+    .avatar {
+      width: 66px;
+      height: 66px;
+      border-radius: 22px;
+      background: var(--navy);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 950;
+      font-size: 20px;
+      margin: 0 auto 14px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: .8fr 1fr;
+      gap: 35px;
+      align-items: start;
+    }
+
+    .form {
+      background: white;
+      color: var(--navy);
+      border-radius: var(--radius);
+      padding: 26px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .success {
+      display: none;
+      margin-top: 16px;
+      background: rgba(52,189,189,.16);
+      border-radius: 16px;
+      padding: 15px;
+      font-weight: 950;
+    }
+
+    footer {
+      padding: 28px 22px;
+      background: #050e1b;
+      color: #cbd5e1;
+      text-align: center;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    @media (max-width: 980px) {
+      .nav-links { display: none; }
+      .hero-grid, .grid-2, .demo-box, .contact-grid { grid-template-columns: 1fr; }
+      .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr 1fr; }
+      h1 { letter-spacing: -1.8px; }
+    }
+
+    @media (max-width: 640px) {
+      .hero { padding: 62px 18px; }
+      .section { padding: 64px 18px; }
+      .grid-3, .grid-4, .grid-5, .field-grid, .form-grid, .mock-cards { grid-template-columns: 1fr; }
+      .mock-stats { grid-template-columns: 1fr; }
+      .nav-inner { padding: 12px 16px; }
+      .nav .btn { display: none; }
+      h1 { font-size: 43px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#home" class="logo">
+        <span class="logo-mark">✦</span>
+        <span>StratArena <small>Proof-of-skill platform</small></span>
+      </a>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#problem">Problem</a>
+        <a href="#solution">Solution</a>
+        <a href="#demo">Demo</a>
+        <a href="#market">Market</a>
+        <a href="#business">Business Model</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a class="btn primary" href="#demo">Try Demo</a>
+    </div>
+  </nav>
+
+  <header id="home" class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="pill"><span class="dot"></span>The proof-of-skill layer for business talent.</div>
+        <h1>Prove Business Skills Beyond the CV</h1>
+        <p class="lead">StratArena helps MBA/EMBA candidates solve real business challenges, receive verified scoring, and build profiles recruiters can trust.</p>
+        <p class="strong-line">StratArena turns business practice into verified proof of ability.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#demo">Try a Demo Challenge →</a>
+          <a class="btn dark" href="#recruiter">View Recruiter Signal →</a>
+        </div>
+        <p class="trust">Built for continuous learning, benchmarking, and evidence-based hiring.</p>
+      </div>
+
+      <div class="mockup">
+        <span class="glow1"></span>
+        <span class="glow2"></span>
+        <div class="card">
+          <div class="mock-inner">
+            <div class="mock-top">
+              <div>
+                <p class="label">Live Challenge</p>
+                <h3>AI Product Launch</h3>
+              </div>
+              <div class="timer">⏱ 15m</div>
+            </div>
+            <div class="mock-cards">
+              <div class="mini-dark">
+                <div style="font-size:28px">📄</div>
+                <b>Decision memo</b>
+                <div class="lines"><span></span><span style="width:80%"></span><span style="width:58%"></span></div>
+              </div>
+              <div class="mini-light">
+                <div style="font-size:28px">🏅</div>
+                <b>Verified Score</b>
+                <div style="font-size:42px;font-weight:950;line-height:1;margin-top:10px">87</div>
+                <small>Recruiter-ready signal</small>
+              </div>
+            </div>
+          </div>
+          <div class="mock-stats">
+            <div class="stat"><small>Strategy</small><b>92</b></div>
+            <div class="stat"><small>Pricing</small><b>84</b></div>
+            <div class="stat"><small>Clarity</small><b>88</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="problem" class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Pain points</p>
+        <h2>The Problem</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card"><div class="icon orange-bg">🎓</div><h3>Candidates</h3><p>Practice is unstructured. Feedback depends on peers. Improvement is hard to measure.</p></div>
+        <div class="card"><div class="icon orange-bg">💼</div><h3>Recruiters</h3><p>CVs, school brand, and interviews do not reliably show real-time business judgment.</p></div>
+        <div class="card"><div class="icon orange-bg">🏢</div><h3>Companies</h3><p>Training and hiring investments are hard to connect with measurable skill outcomes.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Market timing</p>
+        <h2>Why Now?</h2>
+        <p>The market is moving from degree-based signaling to verified skill evidence.</p>
+      </div>
+      <div class="grid-3">
+        <div class="dark-card"><div class="icon teal-bg">⚡</div><h3>Rapid skill obsolescence</h3><p>Business skills and job requirements change faster than traditional education.</p></div>
+        <div class="dark-card"><div class="icon teal-bg">📈</div><h3>Continuous upskilling</h3><p>Professionals need repeated learning loops, not one-off courses.</p></div>
+        <div class="dark-card"><div class="icon teal-bg">✅</div><h3>Skills-first hiring</h3><p>Recruiters increasingly need evidence of capability, not only credentials.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="solution" class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Solution</p>
+        <h2>The Solution</h2>
+        <p>LeetCode-style proof for business decision-making. MBA candidates solve real business challenges, receive verified scoring, and build profiles recruiters can trust.</p>
+      </div>
+      <div class="grid-4">
+        <div class="card"><div class="icon orange-bg">▶️</div><h3>Practice</h3><p>Solve timed business cases</p></div>
+        <div class="card"><div class="icon teal-bg">📊</div><h3>Benchmark</h3><p>Compare performance against peers</p></div>
+        <div class="card"><div class="icon orange-bg">🛡️</div><h3>Verify</h3><p>Receive structured scoring</p></div>
+        <div class="card"><div class="icon teal-bg">🏅</div><h3>Signal</h3><p>Build recruiter-facing proof</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="section dark">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Workflow</p>
+        <h2>How It Works</h2>
+        <p>Challenge data → verified performance → recruiter discovery → stronger incentive to participate again.</p>
+      </div>
+      <div class="grid-5">
+        <div class="card"><div class="step-number">1</div><h3>Timed challenge</h3><p>Candidate solves a real business problem.</p></div>
+        <div class="card"><div class="step-number">2</div><h3>Decision memo</h3><p>Candidate submits a one-page memo.</p></div>
+        <div class="card"><div class="step-number">3</div><h3>Rubric score</h3><p>StratArena scores the reasoning.</p></div>
+        <div class="card"><div class="step-number">4</div><h3>Skill profile</h3><p>Candidate builds verified proof.</p></div>
+        <div class="card"><div class="step-number">5</div><h3>Discovery</h3><p>Recruiters filter verified talent.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="demo" class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Product demo</p>
+        <h2>Try a Demo Challenge</h2>
+        <p>This frontend demo simulates the manual MVP experience. No backend is required.</p>
+      </div>
+
+      <div class="demo-box">
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;align-items:center">
+            <h3>AI Learning Product Launch</h3>
+            <span class="timer" style="background:rgba(245,166,35,.18);color:var(--navy)">⏱ Suggested time: 15 minutes</span>
+          </div>
+          <p class="challenge-text">Your company is launching a premium AI learning product for managers. You have a limited budget. Should you prioritize pricing, customer segment, or distribution channel first?</p>
+
+          <div class="field-grid">
+            <textarea placeholder="Key assumptions"></textarea>
+            <textarea placeholder="Recommended decision"></textarea>
+            <textarea placeholder="Trade-offs"></textarea>
+            <textarea placeholder="Expected business impact"></textarea>
+          </div>
+          <button class="btn primary" style="margin-top:18px" onclick="showScore()">Submit Decision Memo →</button>
+        </div>
+
+        <div class="card">
+          <p class="label">Simulated result</p>
+          <div id="beforeScore">
+            <p style="margin-top:20px;color:var(--muted)">Submit the memo to reveal a sample score, strengths, improvement area, and badge.</p>
+          </div>
+          <div id="afterScore" style="display:none">
+            <div class="score-card">
+              <p style="color:#cbd5e1">Overall Score</p>
+              <div class="score">82<span style="font-size:24px;color:#94a3b8">/100</span></div>
+              <span class="badge">Verified Starter Signal</span>
+            </div>
+            <p style="margin-top:18px"><b>Strengths:</b> clear logic, practical recommendation</p>
+            <p style="margin-top:8px"><b>Improve:</b> add stronger market evidence</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="scoring" class="section dark">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Rubric</p>
+        <h2>What We Score</h2>
+        <p>Manual scoring first, automated scoring later.</p>
+      </div>
+      <div class="grid-5">
+        <div class="dark-card"><h3>Problem framing</h3><div class="progress"><div class="bar" style="width:88%"></div></div></div>
+        <div class="dark-card"><h3>Data logic</h3><div class="progress"><div class="bar" style="width:76%"></div></div></div>
+        <div class="dark-card"><h3>Trade-off thinking</h3><div class="progress"><div class="bar" style="width:84%"></div></div></div>
+        <div class="dark-card"><h3>Recommendation quality</h3><div class="progress"><div class="bar" style="width:90%"></div></div></div>
+        <div class="dark-card"><h3>Communication clarity</h3><div class="progress"><div class="bar" style="width:82%"></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="profile" class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Candidate signal</p>
+        <h2>Verified Skill Profile</h2>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div style="display:flex;gap:18px;align-items:center">
+            <div class="avatar" style="margin:0">SC</div>
+            <div>
+              <h3>Sample Candidate</h3>
+              <p style="color:var(--muted);font-weight:800">Role target: Strategy / Consulting</p>
+            </div>
+          </div>
+          <div class="metric alt" style="margin-top:22px;text-align:left">
+            <small>Overall Score</small>
+            <div style="font-size:48px;font-weight:950">87/100</div>
+          </div>
+          <div class="tags"><span class="tag">Strategy</span><span class="tag">Pricing</span><span class="tag">Market Sizing</span></div>
+          <p style="margin-top:18px"><b>Recent Challenge:</b> AI Upskilling Product Launch</p>
+          <p><b>Recruiter-ready signal:</b> Verified decision memo available</p>
+          <a class="btn primary" href="#recruiter" style="margin-top:18px">View Sample Profile</a>
+        </div>
+        <div class="card" style="background:#f8fafc">
+          <div style="font-size:45px">📈</div>
+          <h3 style="font-size:32px;margin-top:10px">From practice to proof</h3>
+          <p style="color:var(--muted);margin-top:14px">Each challenge creates visible evidence: reasoning quality, trade-off thinking, communication clarity, and verified scoring.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="recruiter" class="section dark">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Recruiter view</p>
+        <h2>Recruiter Signal</h2>
+        <p>Recruiters can review anonymized decision memos, compare candidates, and filter talent by demonstrated skill.</p>
+      </div>
+      <div class="dashboard">
+        <div class="dashboard-top">
+          <b>🔎 Talent Discovery Dashboard</b>
+          <div class="tags" style="margin-top:0"><span class="tag">Strategy</span><span class="tag">Pricing</span><span class="tag">Product</span><span class="tag">Market Sizing</span></div>
+        </div>
+        <div class="grid-3">
+          <div class="metric alt"><h3>Candidate A</h3><div class="big-value">91</div><p>Decision memo preview: Strong pricing logic</p></div>
+          <div class="metric alt"><h3>Candidate B</h3><div class="big-value">87</div><p>Decision memo preview: Clear market sizing</p></div>
+          <div class="metric alt"><h3>Candidate C</h3><div class="big-value">82</div><p>Decision memo preview: Practical product focus</p></div>
+        </div>
+        <a class="btn primary" href="#contact" style="margin-top:22px">Explore Recruiter View</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="mvp" class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Validation</p>
+        <h2>Pre-test MVP Setup</h2>
+        <p>We are not faking traction. We prepared a manual MVP to validate real behavior.</p>
+      </div>
+      <div class="grid-4">
+        <div class="card"><h3>Challenge Bank</h3><p>Short real-world business problems</p></div>
+        <div class="card"><h3>Decision Memo</h3><p>One-page output showing reasoning and trade-offs</p></div>
+        <div class="card"><h3>Scoring Rubric</h3><p>Manual first; logic, trade-offs, data, clarity, practicality</p></div>
+        <div class="card"><h3>Recruiter View</h3><p>Anonymized outputs shown to HR/recruiters for signal testing</p></div>
+      </div>
+      <div class="grid-4" style="margin-top:18px">
+        <div class="metric">60%+ completion rate</div>
+        <div class="metric">30%+ repeat interest</div>
+        <div class="metric">50%+ premium interest</div>
+        <div class="metric">2/3 recruiters find memos useful</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="market" class="section dark">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Opportunity</p>
+        <h2>Market Opportunity</h2>
+        <p>Opportunity: no widely adopted platform integrates continuous practice, scoring, public proof, and recruiter-facing profiles for business roles.</p>
+      </div>
+      <div class="grid-3">
+        <div class="dark-card"><p class="label">TAM</p><div class="big-value">$180B–$220B+</div><p>Global EdTech / online learning</p></div>
+        <div class="dark-card"><p class="label">SAM</p><div class="big-value">3–5M</div><p>MBA/EMBA + professional learners</p></div>
+        <div class="dark-card"><p class="label">SOM</p><div class="big-value">50K–100K</div><p>Early adopters in MBA ecosystems</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="business" class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Business model</p>
+        <h2>Revenue Model</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card"><div class="icon orange-bg">👥</div><h3>B2C candidates</h3><p>Freemium → €10–20/month for feedback, rankings, and verified badges</p></div>
+        <div class="card"><div class="icon orange-bg">💼</div><h3>B2B recruiters</h3><p>SaaS access to candidate filtering, decision memos, and talent discovery</p></div>
+        <div class="card"><div class="icon orange-bg">🏫</div><h3>Future revenue</h3><p>Sponsored challenges, placement fees, and institutional partnerships</p></div>
+      </div>
+      <div class="grid-3" style="margin-top:18px">
+        <div class="card"><b>Initial investment required:</b><br>€15K–25K</div>
+        <div class="card"><b>Expected break-even window:</b><br>Year 2–3</div>
+        <div class="card"><b>Projected early revenue:</b><br>~€1K/month after pilot monetization</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="roadmap" class="section dark">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Execution</p>
+        <h2>Execution Plan</h2>
+        <p>Help us pressure-test the scoring logic, MVP test design, and the strongest way to make recruiters trust the signal.</p>
+      </div>
+      <div class="grid-4">
+        <div class="dark-card timeline-card"><p class="label">Now</p><h3>Pitch clinic feedback</h3><p>Clarify story and scoring</p></div>
+        <div class="dark-card timeline-card"><p class="label">Next week</p><h3>Pilot setup</h3><p>Finalize challenge and rubric</p></div>
+        <div class="dark-card timeline-card"><p class="label">Following week</p><h3>Run test</h3><p>Collect candidate outputs</p></div>
+        <div class="dark-card timeline-card"><p class="label">Before final day</p><h3>Demo-ready proof</h3><p>Show prototype and learning</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="team" class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">People</p>
+        <h2>Team 16</h2>
+        <p>Supported by Startup Lab mentoring and validation interviews.</p>
+      </div>
+      <div class="grid-4">
+        <div class="card" style="text-align:center"><div class="avatar">ZA</div><h3>Zishan Ahmed</h3></div>
+        <div class="card" style="text-align:center"><div class="avatar">TA</div><h3>Tasnim Ur Rahaman Anas</h3></div>
+        <div class="card" style="text-align:center"><div class="avatar">GH</div><h3>Guoqing He</h3></div>
+        <div class="card" style="text-align:center"><div class="avatar">NM</div><h3>Naim Morshed</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section dark">
+    <div class="container contact-grid">
+      <div>
+        <p class="eyebrow">Call to action</p>
+        <h2>Help Us Build the Proof-of-Skill Layer</h2>
+        <p style="color:#cbd5e1;margin-top:18px">We are looking for feedback from MBA students, recruiters, mentors, and business school partners.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#demo">Try Demo Challenge</a>
+          <button class="btn light" onclick="fakeWaitlist()">Join Pilot Waitlist</button>
+          <a class="btn light" href="#contact">Contact Team</a>
+        </div>
+        <p style="color:#cbd5e1;margin-top:25px">Professional, pilot-ready, and honest about current stage: a pre-test MVP designed to validate behavior before scaling.</p>
+      </div>
+      <form class="form" onsubmit="submitContact(event)">
+        <div class="form-grid">
+          <input required placeholder="Name">
+          <input required placeholder="Role">
+          <input required type="email" placeholder="Email">
+          <select>
+            <option>Candidate</option>
+            <option>Recruiter</option>
+            <option>School</option>
+            <option>Mentor</option>
+          </select>
+        </div>
+        <textarea style="margin-top:14px" placeholder="Message"></textarea>
+        <button class="btn primary" style="margin-top:16px">Send Message</button>
+        <div id="success" class="success">Thank you. Your interest has been recorded for the demo.</div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 StratArena Demo · Built for Startup Lab pitch clinic
+  </footer>
+
+  <script>
+    function showScore() {
+      document.getElementById("beforeScore").style.display = "none";
+      document.getElementById("afterScore").style.display = "block";
+    }
+
+    function submitContact(event) {
+      event.preventDefault();
+      document.getElementById("success").style.display = "block";
+    }
+
+    function fakeWaitlist() {
+      document.getElementById("success").style.display = "block";
+      document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+</body>
+</html>
