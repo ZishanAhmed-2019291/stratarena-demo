@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StratArena | Proof-of-Skill Platform</title>
-  <meta name="description" content="StratArena turns business practice into verified proof of ability." />
+  <title>StratArena | Verified Business Skill Profiles</title>
+  <meta name="description" content="Practice business challenges, earn verified scores, and build a recruiter-ready skill profile." />
   <style>
     :root {
       --navy: #071426;
@@ -25,7 +25,7 @@
       margin: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
       color: var(--text);
-      background: white;
+      background: #fff;
       line-height: 1.6;
     }
 
@@ -37,7 +37,7 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(255,255,255,.92);
+      background: rgba(255,255,255,.93);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--line);
     }
@@ -56,7 +56,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      font-weight: 900;
+      font-weight: 950;
     }
 
     .logo-mark {
@@ -70,14 +70,6 @@
       font-size: 20px;
     }
 
-    .logo small {
-      display: block;
-      color: var(--muted);
-      font-weight: 800;
-      font-size: 11px;
-      margin-top: -3px;
-    }
-
     .nav-links {
       display: flex;
       gap: 18px;
@@ -86,7 +78,7 @@
 
     .nav-links a {
       font-size: 14px;
-      font-weight: 800;
+      font-weight: 850;
       color: #526174;
     }
 
@@ -101,45 +93,30 @@
       gap: 8px;
       border-radius: 999px;
       padding: 13px 20px;
-      font-weight: 900;
+      font-weight: 950;
       font-size: 14px;
       transition: .2s ease;
       box-shadow: 0 8px 24px rgba(7,20,38,.08);
     }
 
-    .btn.primary {
-      background: var(--orange);
-      color: var(--navy);
-    }
-
+    .btn.primary { background: var(--orange); color: var(--navy); }
     .btn.primary:hover { background: #ffc85f; transform: translateY(-1px); }
-
-    .btn.dark {
-      background: var(--navy);
-      color: white;
-    }
-
-    .btn.light {
-      background: white;
-      color: var(--navy);
-      border: 1px solid var(--line);
-    }
+    .btn.dark { background: var(--navy); color: white; }
+    .btn.light { background: white; color: var(--navy); border: 1px solid var(--line); }
+    .btn.teal { background: var(--teal); color: var(--navy); }
 
     .hero {
       background: linear-gradient(180deg, #fff 0%, #f7f9fc 100%);
-      padding: 92px 22px;
+      padding: 84px 22px;
       overflow: hidden;
     }
 
-    .container {
-      max-width: 1180px;
-      margin: auto;
-    }
+    .container { max-width: 1180px; margin: auto; }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 52px;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
       align-items: center;
     }
 
@@ -165,14 +142,14 @@
     }
 
     h1 {
-      font-size: clamp(44px, 6vw, 76px);
+      font-size: clamp(43px, 5.7vw, 74px);
       line-height: .98;
-      letter-spacing: -2.7px;
+      letter-spacing: -2.6px;
       margin: 24px 0;
     }
 
     h2 {
-      font-size: clamp(32px, 4vw, 54px);
+      font-size: clamp(32px, 4vw, 52px);
       line-height: 1.05;
       letter-spacing: -1.5px;
       margin: 0;
@@ -180,24 +157,14 @@
 
     h3 { margin: 0; font-size: 21px; line-height: 1.2; }
     p { margin: 0; }
-    .lead { color: var(--muted); font-size: 20px; max-width: 690px; }
-    .strong-line { margin-top: 18px; font-size: 18px; font-weight: 900; }
+
+    .lead {
+      color: var(--muted);
+      font-size: 20px;
+      max-width: 670px;
+    }
+
     .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
-    .trust { margin-top: 22px; color: var(--muted); font-weight: 800; font-size: 14px; }
-
-    .mockup {
-      position: relative;
-    }
-
-    .glow1, .glow2 {
-      position: absolute;
-      border-radius: 999px;
-      filter: blur(30px);
-      z-index: 0;
-    }
-
-    .glow1 { width: 150px; height: 150px; background: rgba(52,189,189,.22); left: -25px; top: 15px; }
-    .glow2 { width: 180px; height: 180px; background: rgba(245,166,35,.23); right: -25px; bottom: 20px; }
 
     .card {
       background: white;
@@ -206,23 +173,50 @@
       box-shadow: var(--shadow);
       padding: 25px;
       position: relative;
-      z-index: 1;
     }
 
-    .mock-inner {
-      background: linear-gradient(135deg, var(--navy), var(--navy2));
+    .product-shell {
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      border: 1px solid #e8edf3;
+      background: white;
+    }
+
+    .topbar {
+      padding: 15px 18px;
+      background: var(--navy);
       color: white;
-      border-radius: 24px;
-      padding: 24px;
-    }
-
-    .mock-top {
       display: flex;
       justify-content: space-between;
-      gap: 15px;
-      align-items: start;
-      margin-bottom: 20px;
+      gap: 16px;
+      align-items: center;
     }
+
+    .window {
+      display: grid;
+      grid-template-columns: .32fr .68fr;
+      min-height: 445px;
+    }
+
+    .sidebar {
+      background: #f8fafc;
+      border-right: 1px solid var(--line);
+      padding: 18px;
+    }
+
+    .side-item {
+      padding: 12px;
+      border-radius: 16px;
+      margin-bottom: 10px;
+      font-weight: 900;
+      color: #475569;
+      font-size: 14px;
+    }
+
+    .side-item.active { background: var(--navy); color: white; }
+
+    .screen { padding: 20px; }
 
     .label {
       color: var(--teal);
@@ -230,55 +224,29 @@
       letter-spacing: .2em;
       font-size: 12px;
       font-weight: 950;
+      margin-bottom: 9px;
     }
 
-    .timer {
-      background: rgba(255,255,255,.11);
-      padding: 7px 12px;
-      border-radius: 999px;
-      font-weight: 900;
-      font-size: 14px;
-      white-space: nowrap;
-    }
-
-    .mock-cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-    }
-
-    .mini-dark, .mini-light {
-      border-radius: 18px;
-      padding: 18px;
-    }
-
-    .mini-dark { background: rgba(255,255,255,.11); }
-    .mini-light { background: white; color: var(--navy); }
-
-    .lines span {
-      display: block;
-      height: 8px;
-      background: rgba(255,255,255,.25);
-      border-radius: 999px;
-      margin-top: 9px;
-    }
-
-    .mock-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .stat {
+    .mini-card {
       background: #f8fafc;
-      border-radius: 18px;
-      padding: 14px;
-      text-align: center;
+      border: 1px solid #edf2f7;
+      border-radius: 20px;
+      padding: 16px;
+      margin-top: 14px;
     }
 
-    .stat small { color: var(--muted); font-weight: 900; }
-    .stat b { display: block; font-size: 23px; }
+    .score-circle {
+      width: 94px;
+      height: 94px;
+      border-radius: 50%;
+      background: conic-gradient(var(--teal) 82%, #e5e7eb 0);
+      display: grid;
+      place-items: center;
+      margin-left: auto;
+      color: var(--navy);
+      font-weight: 950;
+      font-size: 26px;
+    }
 
     .section {
       padding: 82px 22px;
@@ -310,10 +278,9 @@
 
     .dark .section-head p { color: #cbd5e1; }
 
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; }
     .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
     .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-    .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; }
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; }
 
     .icon {
       width: 52px;
@@ -337,22 +304,32 @@
 
     .dark-card p { color: #cbd5e1; margin-top: 12px; }
 
-    .step-number {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      background: var(--orange);
-      color: var(--navy);
-      font-weight: 950;
-      margin-bottom: 15px;
+    .tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
     }
 
-    .demo-box {
+    .tab {
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 950;
+      cursor: pointer;
+    }
+
+    .tab.active {
+      background: var(--navy);
+      color: white;
+      border-color: var(--navy);
+    }
+
+    .challenge-layout {
       display: grid;
-      grid-template-columns: 1fr .78fr;
-      gap: 28px;
+      grid-template-columns: .72fr .28fr;
+      gap: 24px;
     }
 
     .challenge-text {
@@ -380,14 +357,23 @@
     }
 
     textarea { min-height: 105px; resize: vertical; }
-    textarea:focus, input:focus, select:focus { border-color: var(--teal); box-shadow: 0 0 0 4px rgba(52,189,189,.15); }
+
+    textarea:focus, input:focus, select:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 4px rgba(52,189,189,.15);
+    }
+
+    .result {
+      display: none;
+      margin-top: 18px;
+    }
 
     .score-card {
       background: var(--navy);
       color: white;
       border-radius: 24px;
       padding: 26px;
-      margin-top: 20px;
+      margin-top: 10px;
     }
 
     .score-card .score {
@@ -409,10 +395,10 @@
 
     .progress {
       height: 12px;
-      background: rgba(255,255,255,.1);
+      background: #e2e8f0;
       border-radius: 999px;
       overflow: hidden;
-      margin-top: 16px;
+      margin-top: 10px;
     }
 
     .bar {
@@ -421,7 +407,26 @@
       border-radius: 999px;
     }
 
+    .profile-head {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 66px;
+      height: 66px;
+      border-radius: 22px;
+      background: var(--navy);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 950;
+      font-size: 20px;
+    }
+
     .tags { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 18px; }
+
     .tag {
       background: rgba(52,189,189,.15);
       border-radius: 999px;
@@ -444,6 +449,28 @@
       gap: 16px;
       flex-wrap: wrap;
       margin-bottom: 18px;
+      align-items: center;
+    }
+
+    .candidate-row {
+      display: grid;
+      grid-template-columns: 1.2fr .55fr .9fr 1fr;
+      gap: 14px;
+      align-items: center;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      margin-top: 12px;
+      background: #f8fafc;
+    }
+
+    .memo {
+      background: white;
+      border: 1px solid var(--line);
+      padding: 14px;
+      border-radius: 16px;
+      font-size: 14px;
+      color: #475569;
     }
 
     .metric {
@@ -455,32 +482,7 @@
       font-weight: 950;
     }
 
-    .metric.alt { background: #f8fafc; color: var(--navy); }
-
-    .big-value {
-      color: var(--orange);
-      font-size: 42px;
-      font-weight: 950;
-      line-height: 1;
-      margin-top: 8px;
-    }
-
-    .timeline-card {
-      border-left: 4px solid var(--orange);
-    }
-
-    .avatar {
-      width: 66px;
-      height: 66px;
-      border-radius: 22px;
-      background: var(--navy);
-      color: white;
-      display: grid;
-      place-items: center;
-      font-weight: 950;
-      font-size: 20px;
-      margin: 0 auto 14px;
-    }
+    .metric.alt { background: #f8fafc; color: var(--navy); text-align: left; }
 
     .contact-grid {
       display: grid;
@@ -522,19 +524,19 @@
 
     @media (max-width: 980px) {
       .nav-links { display: none; }
-      .hero-grid, .grid-2, .demo-box, .contact-grid { grid-template-columns: 1fr; }
-      .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr 1fr; }
-      h1 { letter-spacing: -1.8px; }
+      .hero-grid, .grid-2, .challenge-layout, .contact-grid, .window { grid-template-columns: 1fr; }
+      .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+      .candidate-row { grid-template-columns: 1fr; }
+      .sidebar { border-right: 0; border-bottom: 1px solid var(--line); }
     }
 
     @media (max-width: 640px) {
       .hero { padding: 62px 18px; }
       .section { padding: 64px 18px; }
-      .grid-3, .grid-4, .grid-5, .field-grid, .form-grid, .mock-cards { grid-template-columns: 1fr; }
-      .mock-stats { grid-template-columns: 1fr; }
+      .grid-3, .grid-4, .field-grid, .form-grid { grid-template-columns: 1fr; }
       .nav-inner { padding: 12px 16px; }
       .nav .btn { display: none; }
-      h1 { font-size: 43px; }
+      h1 { font-size: 42px; }
     }
   </style>
 </head>
@@ -543,149 +545,120 @@
     <div class="nav-inner">
       <a href="#home" class="logo">
         <span class="logo-mark">✦</span>
-        <span>StratArena <small>Proof-of-skill platform</small></span>
+        <span>StratArena</span>
       </a>
       <div class="nav-links">
         <a href="#home">Home</a>
-        <a href="#problem">Problem</a>
-        <a href="#solution">Solution</a>
-        <a href="#demo">Demo</a>
-        <a href="#market">Market</a>
-        <a href="#business">Business Model</a>
-        <a href="#roadmap">Roadmap</a>
-        <a href="#contact">Contact</a>
+        <a href="#challenges">Challenges</a>
+        <a href="#memo">Decision Memo</a>
+        <a href="#profile">Skill Profile</a>
+        <a href="#recruiters">Recruiters</a>
+        <a href="#access">Access</a>
       </div>
-      <a class="btn primary" href="#demo">Try Demo</a>
+      <a class="btn primary" href="#challenges">Start Challenge</a>
     </div>
   </nav>
 
   <header id="home" class="hero">
     <div class="container hero-grid">
       <div>
-        <div class="pill"><span class="dot"></span>The proof-of-skill layer for business talent.</div>
+        <div class="pill"><span class="dot"></span>Verified business skill profiles</div>
         <h1>Prove Business Skills Beyond the CV</h1>
-        <p class="lead">StratArena helps MBA/EMBA candidates solve real business challenges, receive verified scoring, and build profiles recruiters can trust.</p>
-        <p class="strong-line">StratArena turns business practice into verified proof of ability.</p>
+        <p class="lead">Solve real business challenges, submit decision memos, earn verified scores, and build a profile recruiters can trust.</p>
         <div class="hero-actions">
-          <a class="btn primary" href="#demo">Try a Demo Challenge →</a>
-          <a class="btn dark" href="#recruiter">View Recruiter Signal →</a>
+          <a class="btn primary" href="#challenges">Start a Challenge →</a>
+          <a class="btn dark" href="#recruiters">For Recruiters →</a>
         </div>
-        <p class="trust">Built for continuous learning, benchmarking, and evidence-based hiring.</p>
       </div>
 
-      <div class="mockup">
-        <span class="glow1"></span>
-        <span class="glow2"></span>
-        <div class="card">
-          <div class="mock-inner">
-            <div class="mock-top">
-              <div>
-                <p class="label">Live Challenge</p>
-                <h3>AI Product Launch</h3>
-              </div>
-              <div class="timer">⏱ 15m</div>
-            </div>
-            <div class="mock-cards">
-              <div class="mini-dark">
-                <div style="font-size:28px">📄</div>
-                <b>Decision memo</b>
-                <div class="lines"><span></span><span style="width:80%"></span><span style="width:58%"></span></div>
-              </div>
-              <div class="mini-light">
-                <div style="font-size:28px">🏅</div>
-                <b>Verified Score</b>
-                <div style="font-size:42px;font-weight:950;line-height:1;margin-top:10px">87</div>
-                <small>Recruiter-ready signal</small>
-              </div>
-            </div>
+      <div class="product-shell">
+        <div class="topbar">
+          <b>Candidate Workspace</b>
+          <span style="color:#cbd5e1;font-weight:800">Live Score: 82/100</span>
+        </div>
+        <div class="window">
+          <div class="sidebar">
+            <div class="side-item active">Active Challenge</div>
+            <div class="side-item">Decision Memo</div>
+            <div class="side-item">Score Report</div>
+            <div class="side-item">Skill Profile</div>
+            <div class="side-item">Recruiter Visibility</div>
           </div>
-          <div class="mock-stats">
-            <div class="stat"><small>Strategy</small><b>92</b></div>
-            <div class="stat"><small>Pricing</small><b>84</b></div>
-            <div class="stat"><small>Clarity</small><b>88</b></div>
+          <div class="screen">
+            <p class="label">Active Challenge</p>
+            <h3>AI Learning Product Launch</h3>
+            <div class="mini-card">
+              <b>Prompt</b>
+              <p style="color:var(--muted);margin-top:6px">Choose whether to prioritize pricing, customer segment, or distribution first.</p>
+            </div>
+            <div class="mini-card" style="display:grid;grid-template-columns:1fr auto;gap:15px;align-items:center">
+              <div>
+                <b>Current score preview</b>
+                <p style="color:var(--muted);margin-top:6px">Logic, data use, trade-offs, clarity, recommendation.</p>
+              </div>
+              <div class="score-circle">82</div>
+            </div>
+            <div class="tags">
+              <span class="tag">Strategy</span>
+              <span class="tag">Pricing</span>
+              <span class="tag">Product Launch</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </header>
 
-  <section id="problem" class="section">
+  <section id="challenges" class="section">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">Pain points</p>
-        <h2>The Problem</h2>
+        <p class="eyebrow">Challenge arena</p>
+        <h2>Choose a Business Challenge</h2>
+        <p>Practice with realistic business problems used to evaluate decision quality, structure, and commercial thinking.</p>
       </div>
+
       <div class="grid-3">
-        <div class="card"><div class="icon orange-bg">🎓</div><h3>Candidates</h3><p>Practice is unstructured. Feedback depends on peers. Improvement is hard to measure.</p></div>
-        <div class="card"><div class="icon orange-bg">💼</div><h3>Recruiters</h3><p>CVs, school brand, and interviews do not reliably show real-time business judgment.</p></div>
-        <div class="card"><div class="icon orange-bg">🏢</div><h3>Companies</h3><p>Training and hiring investments are hard to connect with measurable skill outcomes.</p></div>
+        <div class="card">
+          <div class="icon orange-bg">🚀</div>
+          <h3>AI Product Launch</h3>
+          <p style="color:var(--muted);margin-top:10px">Prioritize pricing, segment, or channel for a new AI learning product.</p>
+          <div class="tags"><span class="tag">Strategy</span><span class="tag">Product</span></div>
+          <a class="btn primary" href="#memo" style="margin-top:18px" onclick="setChallenge('ai')">Open Challenge</a>
+        </div>
+
+        <div class="card">
+          <div class="icon teal-bg">💶</div>
+          <h3>SaaS Pricing Reset</h3>
+          <p style="color:var(--muted);margin-top:10px">Improve paid conversion while protecting customer trust and growth.</p>
+          <div class="tags"><span class="tag">Pricing</span><span class="tag">Growth</span></div>
+          <a class="btn primary" href="#memo" style="margin-top:18px" onclick="setChallenge('pricing')">Open Challenge</a>
+        </div>
+
+        <div class="card">
+          <div class="icon orange-bg">🌍</div>
+          <h3>Market Entry Choice</h3>
+          <p style="color:var(--muted);margin-top:10px">Select the strongest first customer segment for entering a new market.</p>
+          <div class="tags"><span class="tag">Market Sizing</span><span class="tag">Strategy</span></div>
+          <a class="btn primary" href="#memo" style="margin-top:18px" onclick="setChallenge('market')">Open Challenge</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section dark">
+  <section id="memo" class="section alt">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">Market timing</p>
-        <h2>Why Now?</h2>
-        <p>The market is moving from degree-based signaling to verified skill evidence.</p>
-      </div>
-      <div class="grid-3">
-        <div class="dark-card"><div class="icon teal-bg">⚡</div><h3>Rapid skill obsolescence</h3><p>Business skills and job requirements change faster than traditional education.</p></div>
-        <div class="dark-card"><div class="icon teal-bg">📈</div><h3>Continuous upskilling</h3><p>Professionals need repeated learning loops, not one-off courses.</p></div>
-        <div class="dark-card"><div class="icon teal-bg">✅</div><h3>Skills-first hiring</h3><p>Recruiters increasingly need evidence of capability, not only credentials.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="solution" class="section">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">Solution</p>
-        <h2>The Solution</h2>
-        <p>LeetCode-style proof for business decision-making. MBA candidates solve real business challenges, receive verified scoring, and build profiles recruiters can trust.</p>
-      </div>
-      <div class="grid-4">
-        <div class="card"><div class="icon orange-bg">▶️</div><h3>Practice</h3><p>Solve timed business cases</p></div>
-        <div class="card"><div class="icon teal-bg">📊</div><h3>Benchmark</h3><p>Compare performance against peers</p></div>
-        <div class="card"><div class="icon orange-bg">🛡️</div><h3>Verify</h3><p>Receive structured scoring</p></div>
-        <div class="card"><div class="icon teal-bg">🏅</div><h3>Signal</h3><p>Build recruiter-facing proof</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="how" class="section dark">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">Workflow</p>
-        <h2>How It Works</h2>
-        <p>Challenge data → verified performance → recruiter discovery → stronger incentive to participate again.</p>
-      </div>
-      <div class="grid-5">
-        <div class="card"><div class="step-number">1</div><h3>Timed challenge</h3><p>Candidate solves a real business problem.</p></div>
-        <div class="card"><div class="step-number">2</div><h3>Decision memo</h3><p>Candidate submits a one-page memo.</p></div>
-        <div class="card"><div class="step-number">3</div><h3>Rubric score</h3><p>StratArena scores the reasoning.</p></div>
-        <div class="card"><div class="step-number">4</div><h3>Skill profile</h3><p>Candidate builds verified proof.</p></div>
-        <div class="card"><div class="step-number">5</div><h3>Discovery</h3><p>Recruiters filter verified talent.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="demo" class="section">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">Product demo</p>
-        <h2>Try a Demo Challenge</h2>
-        <p>This frontend demo simulates the manual MVP experience. No backend is required.</p>
+        <p class="eyebrow">Decision memo</p>
+        <h2 id="challengeTitle">AI Learning Product Launch</h2>
+        <p id="challengeText">Your company is launching a premium AI learning product for managers. You have a limited budget. Should you prioritize pricing, customer segment, or distribution channel first?</p>
       </div>
 
-      <div class="demo-box">
+      <div class="challenge-layout">
         <div class="card">
           <div style="display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;align-items:center">
-            <h3>AI Learning Product Launch</h3>
-            <span class="timer" style="background:rgba(245,166,35,.18);color:var(--navy)">⏱ Suggested time: 15 minutes</span>
+            <h3>Submit Your Recommendation</h3>
+            <span style="background:rgba(245,166,35,.18);color:var(--navy);padding:8px 13px;border-radius:999px;font-weight:950">⏱ 15 minutes</span>
           </div>
-          <p class="challenge-text">Your company is launching a premium AI learning product for managers. You have a limited budget. Should you prioritize pricing, customer segment, or distribution channel first?</p>
 
           <div class="field-grid">
             <textarea placeholder="Key assumptions"></textarea>
@@ -693,41 +666,33 @@
             <textarea placeholder="Trade-offs"></textarea>
             <textarea placeholder="Expected business impact"></textarea>
           </div>
-          <button class="btn primary" style="margin-top:18px" onclick="showScore()">Submit Decision Memo →</button>
+
+          <button class="btn primary" style="margin-top:18px" onclick="showScore()">Submit Memo →</button>
+
+          <div id="scoreResult" class="result">
+            <div class="score-card">
+              <p style="color:#cbd5e1">Verified Score</p>
+              <div class="score">82<span style="font-size:24px;color:#94a3b8">/100</span></div>
+              <span class="badge">Starter Signal Earned</span>
+            </div>
+            <div class="grid-2" style="margin-top:18px">
+              <div class="mini-card"><b>Strengths</b><p style="color:var(--muted);margin-top:6px">Clear recommendation, practical reasoning, visible trade-off awareness.</p></div>
+              <div class="mini-card"><b>Next improvement</b><p style="color:var(--muted);margin-top:6px">Add stronger market evidence and clearer success metrics.</p></div>
+            </div>
+          </div>
         </div>
 
         <div class="card">
-          <p class="label">Simulated result</p>
-          <div id="beforeScore">
-            <p style="margin-top:20px;color:var(--muted)">Submit the memo to reveal a sample score, strengths, improvement area, and badge.</p>
-          </div>
-          <div id="afterScore" style="display:none">
-            <div class="score-card">
-              <p style="color:#cbd5e1">Overall Score</p>
-              <div class="score">82<span style="font-size:24px;color:#94a3b8">/100</span></div>
-              <span class="badge">Verified Starter Signal</span>
-            </div>
-            <p style="margin-top:18px"><b>Strengths:</b> clear logic, practical recommendation</p>
-            <p style="margin-top:8px"><b>Improve:</b> add stronger market evidence</p>
+          <p class="eyebrow">Scoring rubric</p>
+          <h3>Skill Breakdown</h3>
+          <div style="margin-top:18px">
+            <b>Problem framing</b><div class="progress"><div class="bar" style="width:88%"></div></div>
+            <b style="display:block;margin-top:14px">Data logic</b><div class="progress"><div class="bar" style="width:76%"></div></div>
+            <b style="display:block;margin-top:14px">Trade-off thinking</b><div class="progress"><div class="bar" style="width:84%"></div></div>
+            <b style="display:block;margin-top:14px">Recommendation quality</b><div class="progress"><div class="bar" style="width:90%"></div></div>
+            <b style="display:block;margin-top:14px">Communication clarity</b><div class="progress"><div class="bar" style="width:82%"></div></div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="scoring" class="section dark">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">Rubric</p>
-        <h2>What We Score</h2>
-        <p>Manual scoring first, automated scoring later.</p>
-      </div>
-      <div class="grid-5">
-        <div class="dark-card"><h3>Problem framing</h3><div class="progress"><div class="bar" style="width:88%"></div></div></div>
-        <div class="dark-card"><h3>Data logic</h3><div class="progress"><div class="bar" style="width:76%"></div></div></div>
-        <div class="dark-card"><h3>Trade-off thinking</h3><div class="progress"><div class="bar" style="width:84%"></div></div></div>
-        <div class="dark-card"><h3>Recommendation quality</h3><div class="progress"><div class="bar" style="width:90%"></div></div></div>
-        <div class="dark-card"><h3>Communication clarity</h3><div class="progress"><div class="bar" style="width:82%"></div></div></div>
       </div>
     </div>
   </section>
@@ -735,196 +700,169 @@
   <section id="profile" class="section">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">Candidate signal</p>
-        <h2>Verified Skill Profile</h2>
+        <p class="eyebrow">Candidate profile</p>
+        <h2>Your Verified Skill Profile</h2>
+        <p>Scores, badges, challenge history, and decision memos are organized into a recruiter-ready profile.</p>
       </div>
+
       <div class="grid-2">
         <div class="card">
-          <div style="display:flex;gap:18px;align-items:center">
-            <div class="avatar" style="margin:0">SC</div>
+          <div class="profile-head">
+            <div class="avatar">SC</div>
             <div>
               <h3>Sample Candidate</h3>
-              <p style="color:var(--muted);font-weight:800">Role target: Strategy / Consulting</p>
+              <p style="color:var(--muted);font-weight:800">Target role: Strategy / Consulting</p>
             </div>
           </div>
-          <div class="metric alt" style="margin-top:22px;text-align:left">
-            <small>Overall Score</small>
+
+          <div class="metric alt" style="margin-top:22px">
+            <small>Overall verified score</small>
             <div style="font-size:48px;font-weight:950">87/100</div>
           </div>
-          <div class="tags"><span class="tag">Strategy</span><span class="tag">Pricing</span><span class="tag">Market Sizing</span></div>
-          <p style="margin-top:18px"><b>Recent Challenge:</b> AI Upskilling Product Launch</p>
-          <p><b>Recruiter-ready signal:</b> Verified decision memo available</p>
-          <a class="btn primary" href="#recruiter" style="margin-top:18px">View Sample Profile</a>
+
+          <div class="tags">
+            <span class="tag">Strategy</span>
+            <span class="tag">Pricing</span>
+            <span class="tag">Market Sizing</span>
+            <span class="tag">Product Thinking</span>
+          </div>
+
+          <div class="mini-card">
+            <b>Recent challenge</b>
+            <p style="color:var(--muted);margin-top:6px">AI Learning Product Launch · Score 82/100</p>
+          </div>
+
+          <div class="mini-card">
+            <b>Profile visibility</b>
+            <p style="color:var(--muted);margin-top:6px">Recruiters can view anonymized skill evidence and request full profile access.</p>
+          </div>
         </div>
-        <div class="card" style="background:#f8fafc">
-          <div style="font-size:45px">📈</div>
-          <h3 style="font-size:32px;margin-top:10px">From practice to proof</h3>
-          <p style="color:var(--muted);margin-top:14px">Each challenge creates visible evidence: reasoning quality, trade-off thinking, communication clarity, and verified scoring.</p>
+
+        <div class="card">
+          <p class="eyebrow">Performance trend</p>
+          <h3>Business decision-making growth</h3>
+          <div style="margin-top:20px">
+            <b>Strategic judgment</b><div class="progress"><div class="bar" style="width:91%"></div></div>
+            <b style="display:block;margin-top:14px">Business writing</b><div class="progress"><div class="bar" style="width:86%"></div></div>
+            <b style="display:block;margin-top:14px">Commercial thinking</b><div class="progress"><div class="bar" style="width:83%"></div></div>
+            <b style="display:block;margin-top:14px">Decision clarity</b><div class="progress"><div class="bar" style="width:89%"></div></div>
+          </div>
+          <a class="btn dark" href="#recruiters" style="margin-top:24px">Preview Recruiter View →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="recruiter" class="section dark">
+  <section id="recruiters" class="section dark">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">Recruiter view</p>
-        <h2>Recruiter Signal</h2>
-        <p>Recruiters can review anonymized decision memos, compare candidates, and filter talent by demonstrated skill.</p>
+        <p class="eyebrow">Recruiter workspace</p>
+        <h2>Find Candidates by Demonstrated Skill</h2>
+        <p>Filter candidates by verified scores, skill tags, role fit, and decision memo evidence.</p>
       </div>
+
       <div class="dashboard">
         <div class="dashboard-top">
-          <b>🔎 Talent Discovery Dashboard</b>
-          <div class="tags" style="margin-top:0"><span class="tag">Strategy</span><span class="tag">Pricing</span><span class="tag">Product</span><span class="tag">Market Sizing</span></div>
+          <b>🔎 Talent Search</b>
+          <div class="tags" style="margin-top:0">
+            <span class="tag">Strategy</span>
+            <span class="tag">Pricing</span>
+            <span class="tag">Product</span>
+            <span class="tag">Market Sizing</span>
+          </div>
         </div>
-        <div class="grid-3">
-          <div class="metric alt"><h3>Candidate A</h3><div class="big-value">91</div><p>Decision memo preview: Strong pricing logic</p></div>
-          <div class="metric alt"><h3>Candidate B</h3><div class="big-value">87</div><p>Decision memo preview: Clear market sizing</p></div>
-          <div class="metric alt"><h3>Candidate C</h3><div class="big-value">82</div><p>Decision memo preview: Practical product focus</p></div>
+
+        <div class="candidate-row">
+          <div><b>Candidate A</b><p style="color:var(--muted)">Target: Strategy Analyst</p></div>
+          <div><b style="font-size:30px;color:var(--teal)">91</b><p style="color:var(--muted)">Score</p></div>
+          <div class="tags" style="margin-top:0"><span class="tag">Pricing</span><span class="tag">Strategy</span></div>
+          <div class="memo">Memo preview: Strong pricing logic and clear recommendation.</div>
         </div>
-        <a class="btn primary" href="#contact" style="margin-top:22px">Explore Recruiter View</a>
+
+        <div class="candidate-row">
+          <div><b>Candidate B</b><p style="color:var(--muted)">Target: Product Strategy</p></div>
+          <div><b style="font-size:30px;color:var(--teal)">87</b><p style="color:var(--muted)">Score</p></div>
+          <div class="tags" style="margin-top:0"><span class="tag">Product</span><span class="tag">Market Sizing</span></div>
+          <div class="memo">Memo preview: Clear segmentation and practical execution plan.</div>
+        </div>
+
+        <div class="candidate-row">
+          <div><b>Candidate C</b><p style="color:var(--muted)">Target: Consulting</p></div>
+          <div><b style="font-size:30px;color:var(--teal)">82</b><p style="color:var(--muted)">Score</p></div>
+          <div class="tags" style="margin-top:0"><span class="tag">Strategy</span><span class="tag">Clarity</span></div>
+          <div class="memo">Memo preview: Good structure, needs stronger data evidence.</div>
+        </div>
+
+        <a class="btn primary" href="#access" style="margin-top:22px">Request Recruiter Access</a>
       </div>
     </div>
   </section>
 
-  <section id="mvp" class="section">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">Validation</p>
-        <h2>Pre-test MVP Setup</h2>
-        <p>We are not faking traction. We prepared a manual MVP to validate real behavior.</p>
-      </div>
-      <div class="grid-4">
-        <div class="card"><h3>Challenge Bank</h3><p>Short real-world business problems</p></div>
-        <div class="card"><h3>Decision Memo</h3><p>One-page output showing reasoning and trade-offs</p></div>
-        <div class="card"><h3>Scoring Rubric</h3><p>Manual first; logic, trade-offs, data, clarity, practicality</p></div>
-        <div class="card"><h3>Recruiter View</h3><p>Anonymized outputs shown to HR/recruiters for signal testing</p></div>
-      </div>
-      <div class="grid-4" style="margin-top:18px">
-        <div class="metric">60%+ completion rate</div>
-        <div class="metric">30%+ repeat interest</div>
-        <div class="metric">50%+ premium interest</div>
-        <div class="metric">2/3 recruiters find memos useful</div>
-      </div>
-    </div>
-  </section>
-
-  <section id="market" class="section dark">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">Opportunity</p>
-        <h2>Market Opportunity</h2>
-        <p>Opportunity: no widely adopted platform integrates continuous practice, scoring, public proof, and recruiter-facing profiles for business roles.</p>
-      </div>
-      <div class="grid-3">
-        <div class="dark-card"><p class="label">TAM</p><div class="big-value">$180B–$220B+</div><p>Global EdTech / online learning</p></div>
-        <div class="dark-card"><p class="label">SAM</p><div class="big-value">3–5M</div><p>MBA/EMBA + professional learners</p></div>
-        <div class="dark-card"><p class="label">SOM</p><div class="big-value">50K–100K</div><p>Early adopters in MBA ecosystems</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="business" class="section">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">Business model</p>
-        <h2>Revenue Model</h2>
-      </div>
-      <div class="grid-3">
-        <div class="card"><div class="icon orange-bg">👥</div><h3>B2C candidates</h3><p>Freemium → €10–20/month for feedback, rankings, and verified badges</p></div>
-        <div class="card"><div class="icon orange-bg">💼</div><h3>B2B recruiters</h3><p>SaaS access to candidate filtering, decision memos, and talent discovery</p></div>
-        <div class="card"><div class="icon orange-bg">🏫</div><h3>Future revenue</h3><p>Sponsored challenges, placement fees, and institutional partnerships</p></div>
-      </div>
-      <div class="grid-3" style="margin-top:18px">
-        <div class="card"><b>Initial investment required:</b><br>€15K–25K</div>
-        <div class="card"><b>Expected break-even window:</b><br>Year 2–3</div>
-        <div class="card"><b>Projected early revenue:</b><br>~€1K/month after pilot monetization</div>
-      </div>
-    </div>
-  </section>
-
-  <section id="roadmap" class="section dark">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">Execution</p>
-        <h2>Execution Plan</h2>
-        <p>Help us pressure-test the scoring logic, MVP test design, and the strongest way to make recruiters trust the signal.</p>
-      </div>
-      <div class="grid-4">
-        <div class="dark-card timeline-card"><p class="label">Now</p><h3>Pitch clinic feedback</h3><p>Clarify story and scoring</p></div>
-        <div class="dark-card timeline-card"><p class="label">Next week</p><h3>Pilot setup</h3><p>Finalize challenge and rubric</p></div>
-        <div class="dark-card timeline-card"><p class="label">Following week</p><h3>Run test</h3><p>Collect candidate outputs</p></div>
-        <div class="dark-card timeline-card"><p class="label">Before final day</p><h3>Demo-ready proof</h3><p>Show prototype and learning</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="team" class="section">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">People</p>
-        <h2>Team 16</h2>
-        <p>Supported by Startup Lab mentoring and validation interviews.</p>
-      </div>
-      <div class="grid-4">
-        <div class="card" style="text-align:center"><div class="avatar">ZA</div><h3>Zishan Ahmed</h3></div>
-        <div class="card" style="text-align:center"><div class="avatar">TA</div><h3>Tasnim Ur Rahaman Anas</h3></div>
-        <div class="card" style="text-align:center"><div class="avatar">GH</div><h3>Guoqing He</h3></div>
-        <div class="card" style="text-align:center"><div class="avatar">NM</div><h3>Naim Morshed</h3></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact" class="section dark">
+  <section id="access" class="section">
     <div class="container contact-grid">
       <div>
-        <p class="eyebrow">Call to action</p>
-        <h2>Help Us Build the Proof-of-Skill Layer</h2>
-        <p style="color:#cbd5e1;margin-top:18px">We are looking for feedback from MBA students, recruiters, mentors, and business school partners.</p>
+        <p class="eyebrow">Access</p>
+        <h2>Start Using StratArena</h2>
+        <p style="color:var(--muted);margin-top:18px">Create a candidate profile, submit decision memos, or request recruiter access to review verified skill evidence.</p>
         <div class="hero-actions">
-          <a class="btn primary" href="#demo">Try Demo Challenge</a>
-          <button class="btn light" onclick="fakeWaitlist()">Join Pilot Waitlist</button>
-          <a class="btn light" href="#contact">Contact Team</a>
+          <a class="btn primary" href="#challenges">Start as Candidate</a>
+          <a class="btn dark" href="#recruiters">Explore Recruiter Search</a>
         </div>
-        <p style="color:#cbd5e1;margin-top:25px">Professional, pilot-ready, and honest about current stage: a pre-test MVP designed to validate behavior before scaling.</p>
       </div>
-      <form class="form" onsubmit="submitContact(event)">
+
+      <form class="form" onsubmit="submitContact(event)" style="box-shadow:var(--shadow);border:1px solid var(--line)">
         <div class="form-grid">
           <input required placeholder="Name">
-          <input required placeholder="Role">
+          <input required placeholder="Role / Organization">
           <input required type="email" placeholder="Email">
           <select>
             <option>Candidate</option>
-            <option>Recruiter</option>
-            <option>School</option>
-            <option>Mentor</option>
+            <option>Recruiter / HR</option>
+            <option>Professor / Mentor</option>
+            <option>School / Partner</option>
           </select>
         </div>
         <textarea style="margin-top:14px" placeholder="Message"></textarea>
-        <button class="btn primary" style="margin-top:16px">Send Message</button>
-        <div id="success" class="success">Thank you. Your interest has been recorded for the demo.</div>
+        <button class="btn primary" style="margin-top:16px">Request Access</button>
+        <div id="success" class="success">Request received. We will contact you with access details.</div>
       </form>
     </div>
   </section>
 
   <footer>
-    © 2026 StratArena Demo · Built for Startup Lab pitch clinic
+    © 2026 StratArena · Verified business skill profiles
   </footer>
 
   <script>
+    const challenges = {
+      ai: {
+        title: "AI Learning Product Launch",
+        text: "Your company is launching a premium AI learning product for managers. You have a limited budget. Should you prioritize pricing, customer segment, or distribution channel first?"
+      },
+      pricing: {
+        title: "SaaS Pricing Reset",
+        text: "A SaaS startup has strong product usage but weak paid conversion. Should the team reduce price, introduce a freemium tier, or improve onboarding first?"
+      },
+      market: {
+        title: "Market Entry Choice",
+        text: "A European EdTech company wants to enter a new country. Should it start with universities, corporate clients, or individual professionals first?"
+      }
+    };
+
+    function setChallenge(type) {
+      document.getElementById("challengeTitle").innerText = challenges[type].title;
+      document.getElementById("challengeText").innerText = challenges[type].text;
+      document.getElementById("scoreResult").style.display = "none";
+    }
+
     function showScore() {
-      document.getElementById("beforeScore").style.display = "none";
-      document.getElementById("afterScore").style.display = "block";
+      document.getElementById("scoreResult").style.display = "block";
+      document.getElementById("scoreResult").scrollIntoView({ behavior: "smooth", block: "center" });
     }
 
     function submitContact(event) {
       event.preventDefault();
       document.getElementById("success").style.display = "block";
-    }
-
-    function fakeWaitlist() {
-      document.getElementById("success").style.display = "block";
-      document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
     }
   </script>
 </body>
